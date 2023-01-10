@@ -11,9 +11,10 @@ class SENSOR:
     
     def __init__(self, linkName):
         self.linkName = linkName
-        self.values = numpy.zeros(1000) # change number
+        self.values = numpy.zeros(c.maxStep) # change number
 
-    def Get_Value(self, t, maxStep):
-        if t == maxStep-1:
-            print(self.values)
+    def Get_Value(self):
         return pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
+
+    def Save_Values(self):
+        numpy.save(f'data/{self.linkName}SensorValues.npy', self.values)

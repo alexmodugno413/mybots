@@ -23,18 +23,16 @@ class ROBOT:
     def Sense(self, t, maxStep):
         for key, value in self.sensors.items():
             print(key)
-            self.sensors[key].values[t] = self.sensors[key].Get_Value(t, maxStep)
+            self.sensors[key].values[t] = self.sensors[key].Get_Value()
 
-    def Prepare_To_Act(self):
+    def Prepare_To_Act(self, maxStep):
         self.motors = {}
 
         for jointName in pyrosim.jointNamesToIndices:
-            self.motors[jointName] = MOTOR(jointName)
+            self.motors[jointName] = MOTOR(jointName, maxStep)
             print(self.motors[jointName].motorValues)
 
     def Act(self, t):
         for key, value in self.motors.items():
-            # self.motors[key].motorValues = self.motors[key].Prepare_To_Act()
-            # motorValues = self.motors[key].motorValues
             self.motors[key].Set_Value(self.robotId, t)
 

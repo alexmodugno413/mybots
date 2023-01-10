@@ -4,6 +4,7 @@ import pybullet as p
 import pybullet_data
 import pyrosim.pyrosim as pyrosim
 import time
+import constants as c
 
 class SIMULATION:
     
@@ -16,18 +17,13 @@ class SIMULATION:
         self.robot = ROBOT()
         pyrosim.Prepare_To_Simulate(self.robot.robotId)
         self.robot.Prepare_To_Sense()
-        self.robot.Prepare_To_Act()
+        self.robot.Prepare_To_Act(c.maxStep)
 
     def Run(self):
-        maxStep = 1000
-        for i in range(0, maxStep):
+        for i in range(0, c.maxStep):
             p.stepSimulation()
-            self.robot.Sense(i, maxStep)
+            self.robot.Sense(i, c.maxStep)
             self.robot.Act(i)
-
-            # # store motor values
-            # pyrosim.Set_Motor_For_Joint(bodyIndex=robotId, jointName=b'Torso_BackLeg', controlMode=p.POSITION_CONTROL, targetPosition=blTargetAngles[i], maxForce=500)
-            # pyrosim.Set_Motor_For_Joint(bodyIndex=robotId, jointName=b'Torso_FrontLeg', controlMode=p.POSITION_CONTROL, targetPosition=flTargetAngles[i], maxForce=500)
 
             time.sleep(1/60)
 
