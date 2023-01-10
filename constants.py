@@ -1,7 +1,7 @@
 import numpy
 
 amplitude = numpy.pi/4
-frequency = 10
+frequency = 6
 phaseOffset = 0
 
 maxStep = 1000
