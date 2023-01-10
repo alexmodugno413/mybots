@@ -16,14 +16,14 @@ class SIMULATION:
         self.robot = ROBOT()
         pyrosim.Prepare_To_Simulate(self.robot.robotId)
         self.robot.Prepare_To_Sense()
+        self.robot.Prepare_To_Act()
 
     def Run(self):
         maxStep = 1000
         for i in range(0, maxStep):
             p.stepSimulation()
             self.robot.Sense(i, maxStep)
-            print("next")
-            # print(i)
+            self.robot.Act(i)
 
             # # store motor values
             # pyrosim.Set_Motor_For_Joint(bodyIndex=robotId, jointName=b'Torso_BackLeg', controlMode=p.POSITION_CONTROL, targetPosition=blTargetAngles[i], maxForce=500)
