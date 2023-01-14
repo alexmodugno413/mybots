@@ -16,12 +16,11 @@ class MOTOR:
 
     def Prepare_To_Act(self):
         self.amplitude = c.amplitude
-        if self.jointName == b'Torso_FrontLeg':
-            self.frequency = c.frequency/2
-        else:
-            self.frequency = c.frequency
-        print(self.jointName)
-        print(self.frequency)
+        # if self.jointName == b'Torso_FrontLeg':
+        #     self.frequency = c.frequency/2
+        # else:
+        #     self.frequency = c.frequency
+        self.frequency = c.frequency
         self.offset = c.phaseOffset
 
         self.oldTargetAngles = numpy.linspace(0, 2*numpy.pi, c.maxStep)

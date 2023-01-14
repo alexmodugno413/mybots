@@ -2,6 +2,7 @@ import pybullet as p
 import time
 import pybullet_data
 import pyrosim.pyrosim as pyrosim
+from pyrosim.neuralNetwork import NEURAL_NETWORK
 import numpy
 import math
 import random
@@ -13,6 +14,7 @@ class ROBOT:
     
     def __init__(self):
         self.robotId = p.loadURDF("body.urdf") # indicates which robot you want prepared for simulation
+        self.nn = NEURAL_NETWORK("brain.nndf")
 
     def Prepare_To_Sense(self):
         self.sensors = {}
@@ -33,4 +35,8 @@ class ROBOT:
     def Act(self, t):
         for key, value in self.motors.items():
             self.motors[key].Set_Value(self.robotId, t)
+
+    def Think(self):
+        self.nn.Update()
+        self.nn.Print()
 
