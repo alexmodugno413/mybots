@@ -40,10 +40,7 @@ class ROBOT:
                 jointName = bytes(jointName, 'utf-8')
                 desiredAngle = self.nn.Get_Value_Of(neuronName)
                 self.motors[jointName].Set_Value(self.robotId, desiredAngle)
-                # pyrosim.Set_Motor_For_Joint(bodyIndex=self.robotId, jointName=jointName, controlMode=p.POSITION_CONTROL, targetPosition=self.motorValues[desiredAngle], maxForce=500)
                 print(f'neuronName = {neuronName}, jointName = {jointName}, desiredAngle = {desiredAngle}')
-        # for key, value in self.motors.items():
-        #     self.motors[key].Set_Value(self.robotId, t)
 
     def Think(self):
         self.nn.Update()
