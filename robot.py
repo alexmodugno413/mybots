@@ -9,6 +9,7 @@ import random
 import constants as c
 from sensor import SENSOR
 from motor import MOTOR
+import codecs
 
 class ROBOT:
     
@@ -33,8 +34,16 @@ class ROBOT:
             self.motors[jointName] = MOTOR(jointName, maxStep)
 
     def Act(self, t):
-        for key, value in self.motors.items():
-            self.motors[key].Set_Value(self.robotId, t)
+        for neuronName in self.nn.Get_Neuron_Names():
+            if self.nn.Is_Motor_Neuron(neuronName):
+                jointName = self.nn.Get_Motor_Neurons_Joint(neuronName)
+                jointName = bytes(jointName, 'utf-8')
+                desiredAngle = self.nn.Get_Value_Of(neuronName)
+                self.motors[jointName].Set_Value(self.robotId, desiredAngle)
+                # pyrosim.Set_Motor_For_Joint(bodyIndex=self.robotId, jointName=jointName, controlMode=p.POSITION_CONTROL, targetPosition=self.motorValues[desiredAngle], maxForce=500)
+                print(f'neuronName = {neuronName}, jointName = {jointName}, desiredAngle = {desiredAngle}')
+        # for key, value in self.motors.items():
+        #     self.motors[key].Set_Value(self.robotId, t)
 
     def Think(self):
         self.nn.Update()
