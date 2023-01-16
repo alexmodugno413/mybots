@@ -1,6 +1,7 @@
 from solution import SOLUTION
 import constants as c
 import copy
+import os
 
 class PARALLEL_HILL_CLIMBER:
     
@@ -17,7 +18,9 @@ class PARALLEL_HILL_CLIMBER:
         # for currentGeneration in range(c.numberOfGenerations):
         #     self.Evolve_For_One_Generation()
         for i in range(0, c.populationSize):
-            self.parents[i].Evaluate("GUI")
+            self.parents[i].Start_Simulation("GUI")
+        for i in range(0, c.populationSize):
+            self.parents[i].Wait_For_Simulation_To_End()
 
     def Evolve_For_One_Generation(self):
         self.Spawn()

@@ -2,6 +2,7 @@ import numpy
 import pyrosim.pyrosim as pyrosim
 import random
 import os
+import time
 
 class SOLUTION:
     
@@ -10,14 +11,33 @@ class SOLUTION:
         self.weights = numpy.random.rand(3, 2)
         self.weights = self.weights * 2 - 1
 
-    def Evaluate(self, directOrGUI):
+    def Start_Simulation(self, directOrGUI):
         self.Create_World()
         self.Create_Body()
         self.Create_Brain()
         os.system(f'python3 simulate.py {directOrGUI} {str(self.myID)} &')
-        fitnessFile = open("fitness.txt", "r")
+
+    def Wait_For_Simulation_To_End(self):
+        fitnessFile = open(f"fitness{str(self.myID)}.txt", "r")
+        while not os.path.exists(f"fitness{str(self.myID)}.txt"):
+            time.sleep(0.01)
         self.fitness = float(fitnessFile.read())
+        print(f'self.fitness{self.myID}: {self.fitness}')
         fitnessFile.close()
+        print("Remove")
+        os.system(f"rm fitness{str(self.myID)}.txt")
+
+    # def Evaluate(self, directOrGUI):
+    #     self.Create_World()
+    #     self.Create_Body()
+    #     self.Create_Brain()
+    #     os.system(f'python3 simulate.py {directOrGUI} {str(self.myID)} &')
+    #     fitnessFile = open(f"fitness{str(self.myID)}.txt", "r")
+    #     while not os.path.exists(fitnessFile):
+    #         time.sleep(0.01)
+    #     self.fitness = float(fitnessFile.read())
+    #     print(f'self.fitness{self.myID}: {self.fitness}')
+    #     fitnessFile.close()
 
     def Mutate(self):
         randomRow = random.randint(0, len(self.weights)-1)

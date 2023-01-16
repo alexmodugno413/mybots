@@ -15,9 +15,11 @@ import os
 class ROBOT:
     
     def __init__(self, solutionID):
+        self.solutionID = solutionID
         self.robotId = p.loadURDF("body.urdf") # indicates which robot you want prepared for simulation
-        self.nn = NEURAL_NETWORK(f"brain{solutionID}.nndf")
-        os.system(f"rm brain{solutionID}.nndf")
+        self.nn = NEURAL_NETWORK(f"brain{self.solutionID}.nndf")
+        os.system(f"rm brain{str(self.solutionID)}.nndf")
+        # os.system(f"rm brain{solutionID}.nndf")
 
     def Prepare_To_Sense(self):
         self.sensors = {}
@@ -52,8 +54,9 @@ class ROBOT:
         stateOfLinkZero = p.getLinkState(self.robotId, 0)
         positionOfLinkZero = stateOfLinkZero[0]
         xCoordinateOfLinkZero = positionOfLinkZero[0]
-        fitnessFile = open("fitness.txt", "w")
+        fitnessFile = open(f"fitness{str(self.solutionID)}.txt", "w")
         fitnessFile.write(str(xCoordinateOfLinkZero))
+        # os.system(f"mv tmp{str(self.solutionID)}.txt fitness{str(self.solutionID)}.txt")
         fitnessFile.close()
         exit()
 
