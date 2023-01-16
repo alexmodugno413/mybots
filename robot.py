@@ -10,12 +10,14 @@ import constants as c
 from sensor import SENSOR
 from motor import MOTOR
 import codecs
+import os
 
 class ROBOT:
     
-    def __init__(self):
+    def __init__(self, solutionID):
         self.robotId = p.loadURDF("body.urdf") # indicates which robot you want prepared for simulation
-        self.nn = NEURAL_NETWORK("brain.nndf")
+        self.nn = NEURAL_NETWORK(f"brain{solutionID}.nndf")
+        os.system(f"rm brain{solutionID}.nndf")
 
     def Prepare_To_Sense(self):
         self.sensors = {}

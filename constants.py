@@ -7,3 +7,5 @@ phaseOffset = 0
 maxStep = 400
 
 numberOfGenerations = 10
+
+populationSize = 2
