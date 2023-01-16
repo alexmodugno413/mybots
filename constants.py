@@ -5,3 +5,5 @@ frequency = 10
 phaseOffset = 0
 
 maxStep = 500
+
+numberOfGenerations = 2

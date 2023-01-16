@@ -14,6 +14,14 @@ class SOLUTION:
         self.Create_Body()
         self.Create_Brain()
         os.system("python3 simulate.py")
+        fitnessFile = open("fitness.txt", "r")
+        self.fitness = float(fitnessFile.read())
+        fitnessFile.close()
+
+    def Mutate(self):
+        randomRow = random.randint(0, len(self.weights)-1)
+        randomColumn = random.randint(0, len(self.weights[0])-1)
+        self.weights[randomRow, randomColumn] = random.random() * 2 - 1
 
     def Create_World(self):
         x = -3
