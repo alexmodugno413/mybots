@@ -2,6 +2,7 @@ from solution import SOLUTION
 import constants as c
 import copy
 import os
+import time
 
 class PARALLEL_HILL_CLIMBER:
     
@@ -30,9 +31,7 @@ class PARALLEL_HILL_CLIMBER:
         self.Mutate()
         self.Evaluate(self.children)
         self.Print()
-        # print("\n")
-        # print(f'self.parent.fitness: {self.parent.fitness}, self.child.fitness: {self.child.fitness}')
-        # self.Select()
+        self.Select()
 
     def Spawn(self):
         self.children = {}
@@ -58,9 +57,27 @@ class PARALLEL_HILL_CLIMBER:
         print("\n")
 
     def Select(self):
-        if self.parent.fitness > self.child.fitness:
-            self.parent = self.child
+        for i in self.parents.keys():
+            if self.parents[i].fitness > self.children[i].fitness:
+                self.parents[i] = self.children[i]
+        # if self.parent.fitness > self.child.fitness:
+        #     self.parent = self.child
 
     def Show_Best(self):
         # self.parent.Evaluate("GUI")
-        pass
+        minFitness = self.parents[0].fitness
+        idx = 0
+        for i in self.parents.keys():
+            if self.parents[i].fitness < minFitness:
+                minFitness = self.parents[i].fitness
+                idx = i
+        parentMinFitness = self.parents[idx]
+        print(f'parentMinFitness{idx}.fitness: {parentMinFitness.fitness}')
+        parentMinFitness.Start_Simulation("GUI")
+        print("Error")
+        # parentMinFitness.Wait_For_Simulation_To_End("DIRECT")
+        while not os.path.exists(f"fitness{str(parentMinFitness.myID)}.txt"):
+            time.sleep(0.01)
+        os.system(f"rm fitness{str(parentMinFitness.myID)}.txt")
+
+
