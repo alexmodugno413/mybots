@@ -6,6 +6,6 @@ phaseOffset = 0
 
 maxStep = 400
 
-numberOfGenerations = 10
+numberOfGenerations = 4
 
-populationSize = 10
+populationSize = 4

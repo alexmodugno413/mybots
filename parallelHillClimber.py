@@ -74,7 +74,6 @@ class PARALLEL_HILL_CLIMBER:
         parentMinFitness = self.parents[idx]
         print(f'parentMinFitness{idx}.fitness: {parentMinFitness.fitness}')
         parentMinFitness.Start_Simulation("GUI")
-        print("Error")
         # parentMinFitness.Wait_For_Simulation_To_End("DIRECT")
         while not os.path.exists(f"fitness{str(parentMinFitness.myID)}.txt"):
             time.sleep(0.01)
