@@ -20,12 +20,10 @@ class SOLUTION:
     def Wait_For_Simulation_To_End(self, directOrGUI):
         while not os.path.exists(f"fitness{str(self.myID)}.txt"):
             time.sleep(0.01)
-        print("Second")
+        # print("Second")
         fitnessFile = open(f"fitness{str(self.myID)}.txt", "r")
-        # while not os.path.exists(f"fitness{str(self.myID)}.txt"):
-        #     time.sleep(0.01)
         self.fitness = float(fitnessFile.read())
-        print(f'self.fitness{self.myID}: {self.fitness}')
+        # print(f'self.fitness{self.myID}: {self.fitness}')
         fitnessFile.close()
         os.system(f"rm fitness{str(self.myID)}.txt")
 
