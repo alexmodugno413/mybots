@@ -8,4 +8,4 @@ maxStep = 400
 
 numberOfGenerations = 10
 
-populationSize = 10
+populationSize = 2
