@@ -15,6 +15,7 @@ class SOLUTION:
         self.Create_Brain()
         os.system(f'python3 simulate.py {directOrGUI}')
         fitnessFile = open("fitness.txt", "r")
+        print("Second")
         self.fitness = float(fitnessFile.read())
         fitnessFile.close()
 
