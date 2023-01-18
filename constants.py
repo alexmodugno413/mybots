@@ -6,6 +6,9 @@ phaseOffset = 0
 
 maxStep = 400
 
-numberOfGenerations = 4
+numberOfGenerations = 1
 
-populationSize = 4
+populationSize = 1
+
+numSensorNeurons = 4
+numMotorNeurons = 3
