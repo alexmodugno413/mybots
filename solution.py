@@ -23,7 +23,10 @@ class SOLUTION:
             time.sleep(0.01)
         # print("Second")
         fitnessFile = open(f"fitness{str(self.myID)}.txt", "r")
-        self.fitness = float(fitnessFile.read())
+        fitnessFileRead = fitnessFile.read()
+        print(f'fitnessFileRead: {fitnessFileRead}')
+        if len(fitnessFileRead) > 0:
+            self.fitness = float(fitnessFileRead)
         # print(f'self.fitness{self.myID}: {self.fitness}')
         fitnessFile.close()
         os.system(f"rm fitness{str(self.myID)}.txt")
