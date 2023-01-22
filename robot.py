@@ -54,10 +54,14 @@ class ROBOT:
         stateOfLinkZero = p.getLinkState(self.robotId, 0)
         positionOfLinkZero = stateOfLinkZero[0]
         xCoordinateOfLinkZero = positionOfLinkZero[0]
-        # print("First")
+
+        # basePositionAndOrientation = p.getBasePositionAndOrientation(self.robotId)
+        # basePosition = basePositionAndOrientation[0]
+        # xPosition = basePosition[0]
+
         fitnessFile = open(f"fitness{str(self.solutionID)}.txt", "w")
-        # os.system(f"mv tmp{str(self.solutionID)}.txt fitness{str(self.solutionID)}.txt")
         fitnessFile.write(str(xCoordinateOfLinkZero))
+        # fitnessFile.write(str(xPosition))
         fitnessFile.close()
         
 
