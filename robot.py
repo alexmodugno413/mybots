@@ -28,8 +28,16 @@ class ROBOT:
             self.sensors[linkName] = SENSOR(linkName)
 
     def Sense(self, t, maxStep):
+        switch = True
         for key, value in self.sensors.items():
+            if switch == True:
+                # overwrite value of one touch sensor with sin(xt)
+                # low x value means slow-stepping gait, high x value means high-stepping gait
+                self.sensors[key].values[t] = math.sin(4.0*t)
+                switch = False
+                continue
             self.sensors[key].values[t] = self.sensors[key].Get_Value()
+            # print(f't: {t}')
 
     def Prepare_To_Act(self, maxStep):
         self.motors = {}
@@ -51,17 +59,17 @@ class ROBOT:
         # self.nn.Print()
 
     def Get_Fitness(self):
-        stateOfLinkZero = p.getLinkState(self.robotId, 0)
-        positionOfLinkZero = stateOfLinkZero[0]
-        xCoordinateOfLinkZero = positionOfLinkZero[0]
+        # stateOfLinkZero = p.getLinkState(self.robotId, 0)
+        # positionOfLinkZero = stateOfLinkZero[0]
+        # xCoordinateOfLinkZero = positionOfLinkZero[0]
 
-        # basePositionAndOrientation = p.getBasePositionAndOrientation(self.robotId)
-        # basePosition = basePositionAndOrientation[0]
-        # xPosition = basePosition[0]
+        basePositionAndOrientation = p.getBasePositionAndOrientation(self.robotId)
+        basePosition = basePositionAndOrientation[0]
+        zPosition = basePosition[2]
 
         fitnessFile = open(f"fitness{str(self.solutionID)}.txt", "w")
-        fitnessFile.write(str(xCoordinateOfLinkZero))
-        # fitnessFile.write(str(xPosition))
+        # fitnessFile.write(str(xCoordinateOfLinkZero))
+        fitnessFile.write(str(zPosition))
         fitnessFile.close()
         
 

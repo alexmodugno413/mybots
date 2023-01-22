@@ -58,25 +58,26 @@ class PARALLEL_HILL_CLIMBER:
 
     def Select(self):
         for i in self.parents.keys():
-            if self.parents[i].fitness > self.children[i].fitness:
+            if self.parents[i].fitness < self.children[i].fitness:
                 self.parents[i] = self.children[i]
         # if self.parent.fitness > self.child.fitness:
         #     self.parent = self.child
 
     def Show_Best(self):
         # self.parent.Evaluate("GUI")
-        minFitness = self.parents[0].fitness
+        # maxFitness = self.parents[0].fitness
+        maxFitness = -1000.0
         idx = 0
         for i in self.parents.keys():
-            if self.parents[i].fitness < minFitness:
-                minFitness = self.parents[i].fitness
+            if self.parents[i].fitness > maxFitness:
+                maxFitness = self.parents[i].fitness
                 idx = i
-        parentMinFitness = self.parents[idx]
-        print(f'parentMinFitness{idx}.fitness: {parentMinFitness.fitness}')
-        parentMinFitness.Start_Simulation("GUI")
+        parentMaxFitness = self.parents[idx]
+        print(f'parentMinFitness{idx}.fitness: {parentMaxFitness.fitness}')
+        parentMaxFitness.Start_Simulation("GUI")
         # parentMinFitness.Wait_For_Simulation_To_End("DIRECT")
-        while not os.path.exists(f"fitness{str(parentMinFitness.myID)}.txt"):
+        while not os.path.exists(f"fitness{str(parentMaxFitness.myID)}.txt"):
             time.sleep(0.01)
-        os.system(f"rm fitness{str(parentMinFitness.myID)}.txt")
+        os.system(f"rm fitness{str(parentMaxFitness.myID)}.txt")
 
 
