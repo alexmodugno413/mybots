@@ -30,12 +30,12 @@ class ROBOT:
     def Sense(self, t, maxStep):
         switch = True
         for key, value in self.sensors.items():
-            if switch == True:
-                # overwrite value of one touch sensor with sin(xt)
-                # low x value means slow-stepping gait, high x value means high-stepping gait
-                self.sensors[key].values[t] = math.sin(4.0*t)
-                switch = False
-                continue
+            # if switch == True:
+            #     # overwrite value of one touch sensor with sin(xt)
+            #     # low x value means slow-stepping gait, high x value means high-stepping gait
+            #     self.sensors[key].values[t] = math.sin(4.0*t)
+            #     switch = False
+            #     continue
             self.sensors[key].values[t] = self.sensors[key].Get_Value()
             # print(f't: {t}')
 
