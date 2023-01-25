@@ -10,6 +10,6 @@ numberOfGenerations = 10
 
 populationSize = 10
 
-numSensorNeurons = 6
-numMotorNeurons = 5
+numSensorNeurons = 8
+numMotorNeurons = 8
 motorJointRange = 0.2
