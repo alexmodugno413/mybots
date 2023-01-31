@@ -67,6 +67,9 @@ class ROBOT:
         basePosition = basePositionAndOrientation[0]
         zPosition = basePosition[2]
 
+        # position = basePositionAndOrientation[0]
+        # height = position[2]
+
         fitnessFile = open(f"fitness{str(self.solutionID)}.txt", "w")
         # fitnessFile.write(str(xCoordinateOfLinkZero))
         fitnessFile.write(str(zPosition))
