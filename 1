@@ -1,3 +1,36 @@
 pybullet build time: Jan  5 2023 16:36:41
-b3Warning[examples/Importers/ImportURDFDemo/BulletUrdfImporter.cpp,126]:
-expected a world element, continuing without it.
+Version = 4.1 ATI-3.9.15
+Vendor = ATI Technologies Inc.
+Renderer = AMD Radeon Pro 5300M OpenGL Engine
+b3Printf: Selected demo: Physics Server
+startThreads creating 1 threads.
+starting thread 0
+started thread 0 
+MotionThreadFunc thread started
+b3Printf: b3Warning[examples/Importers/ImportURDFDemo/BulletUrdfImporter.cpp,126]:
+
+b3Printf: expected a world element, continuing without it.
+Traceback (most recent call last):
+  File "simulate.py", line 8, in <module>
+    simulation.Run()
+  File "/Users/alexmodugno/OneDrive - Northwestern University/CS 396/mybots/simulation.py", line 29, in Run
+    self.robot.Sense(i, c.maxStep)
+  File "/Users/alexmodugno/OneDrive - Northwestern University/CS 396/mybots/robot.py", line 34, in Sense
+    self.sensors[key].values[t] = self.sensors[key].Get_Value()
+  File "/Users/alexmodugno/OneDrive - Northwestern University/CS 396/mybots/sensor.py", line 17, in Get_Value
+    return pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
+  File "/Users/alexmodugno/OneDrive - Northwestern University/CS 396/mybots/pyrosim/pyrosim.py", line 53, in Get_Touch_Sensor_Value_For_Link
+    for pt in pts:
+TypeError: 'NoneType' object is not iterable
+Exception ignored in: <bound method SIMULATION.__del__ of <simulation.SIMULATION object at 0x7fc54f8e00b8>>
+Traceback (most recent call last):
+  File "/Users/alexmodugno/OneDrive - Northwestern University/CS 396/mybots/simulation.py", line 40, in __del__
+pybullet.error: Not connected to physics server.
+numActiveThreads = 0
+stopping threads
+Thread with taskId 0 exiting
+Thread TERMINATED
+destroy semaphore
+semaphore destroyed
+destroy main semaphore
+main semaphore destroyed
